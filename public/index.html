@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ranjivosti</title>
+        <link rel="stylesheet" href="styles/app.css" />
+    </head>
+    <body>
+        <main>
+            <section class="card mode">
+                <label>
+                    <input type="checkbox" id="ranaToggle" checked>
+                    <strong>SQL injection: ranjiva verzija uključena</strong>
+                </label>
+                <span id="modeBadge" class="badge vuln">RANJIVO</span>
+                <small>Kvačica= upiti se grade spajanjem nizova. Bez kvačice = parametrizirani upiti.</small>
+            </section>
+            <section class="card mode">
+                <label>
+                    <input type="checkbox" id="ranaToggle" checked>
+                    <strong>Broken authentification: ranjiva verzija uključena</strong>
+                </label>
+                <span id="modeBadge" class="badge vuln">RANJIVO</span>
+                <small>Kvačica= sesijski token je Base64(JSON) bez potpisa. Bez kvačice= nasumičan token s mapiranjem na serveru</small>
+            </section>
+        </main>
+    </body>
+    <script src="scripts/app.js" ></script>
+</html>
