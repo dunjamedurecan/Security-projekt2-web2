@@ -1,0 +1,24 @@
+{
+  "name": "vuln-demo",
+  "version": "1.0.0",
+  "description": "Edukacijska aplikacija s namjerno ranjivim funkcionalnostima (SQL umetanje) i prekidačem zaštite",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "tsx src/server.ts",
+    "server": "npm run build && npm start"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.9.0",
+    "@types/pg": "^8.11.10",
+    "express": "^4.21.2",
+    "pg": "^8.13.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}
