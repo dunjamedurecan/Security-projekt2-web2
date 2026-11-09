@@ -27,6 +27,7 @@ const pool =new Pool({
 function errMsg(e:unknown):string{
     return e instanceof Error ? e.message :String(e);
 }
+//zbog potreba aplikacije lozinke spremljene u čistom obliku 
 app.post("/api/login",async (req,res)=>{
     const username=String(req.body?.username ?? "");
     const password=String(req.body?.password ?? "");
