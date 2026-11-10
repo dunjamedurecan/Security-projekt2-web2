@@ -8,22 +8,34 @@
     </head>
     <body>
         <main>
+            <h1>Demonstracija web ranjivosti</h1>
             <section class="card mode">
                 <label>
                     <input type="checkbox" id="ranaToggle" checked>
                     <strong>SQL injection: ranjiva verzija uključena</strong>
                 </label>
-                <span id="modeBadge" class="badge vuln">RANJIVO</span>
-                <small>Kvačica= upiti se grade spajanjem nizova. Bez kvačice = parametrizirani upiti.</small>
+                <small>Kvačica = upiti se grade spajanjem nizova. Bez kvačice = parametrizirani upiti.</small>
             </section>
             <section class="card mode">
                 <label>
-                    <input type="checkbox" id="ranaToggle" checked>
+                    <input type="checkbox" id="authToggle" checked>
                     <strong>Broken authentification: ranjiva verzija uključena</strong>
                 </label>
-                <span id="modeBadge" class="badge vuln">RANJIVO</span>
-                <small>Kvačica= sesijski token je Base64(JSON) bez potpisa. Bez kvačice= nasumičan token s mapiranjem na serveru</small>
+                <small>Kvačica = sesijski token je Base64(JSON) bez potpisa. Bez kvačice = nasumičan token s mapiranjem na serveru</small>
             </section>
+
+            <div class="grid">
+                <section class="card">
+                    <h2> 1. Prijava (tautologija)</h2>
+                    <label for="u">Korisničko ime</label>
+                    <input type="text" id="u" autocomplete="off">
+                    <label for="p">Lozinka</label>
+                    <input type="text" id="p" autocomplete="off">
+                    <button id="loginBtn">Prijavi se</button>
+                    <div id="loginMsg"></div>
+                    <pre id="loginQuery">Izvršeni SQL će se prikazati ovdje</pre>
+                </section>
+            </div>
         </main>
     </body>
     <script src="scripts/app.js" ></script>

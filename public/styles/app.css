@@ -1,0 +1,38 @@
+:root{
+    --bg:white;
+    --fg:darkblue;
+    --card:#1e2227;
+}
+@media(prefers-color-scheme: dark){
+   :root { --bg:#14171a; --fg:#e6e8ea; --card:#1e2227; --border:#38404a; --accent:#6ea0ff; --bad:#ff6b6b; --good:#6fcf7a; --code:#262c33; }
+}
+*{
+    box-sizing: border-box;
+}
+body{
+    margin:0;
+    padding:1rem;
+    font-family: system-ui, sans-serif;
+    background: var(--bg);
+    color:var(--fg);
+    line-height: 1.45;
+}
+main{
+    max-width: 980px;
+    margin:0 auto;
+}
+h1{
+    margin-top: 0;
+    font-size: 1.5rem;
+}
+h2{
+    font-size: 1.15rem;
+    margin-top: 0;
+}
+.card{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
