@@ -20,7 +20,7 @@ let authVunerable=true;
 const pool =new Pool({
     user:process.env.DB_USER,
     host: process.env.DB_HOST,
-    database: 'projekt2_baza',
+    database: process.env.DB_NAME,
     password:process.env.DB_PASSWORD,
     port:5432,
     ssl:false
