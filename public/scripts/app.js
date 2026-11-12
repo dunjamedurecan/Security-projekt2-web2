@@ -77,7 +77,7 @@ $("#btnAdmin").addEventListener("click",async ()=>{
 
 $("#btnLogout").addEventListener("click",async ()=>{
     await postJson("/api/logout",{});
-    document.cookie="session=;path/;max-age=0";
+    document.cookie="session=;path=/;max-age=0";
     updateCookieView();
     setMsg($("#authMsg"),"Odjavljeni ste",true);
 })
