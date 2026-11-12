@@ -36,6 +36,26 @@
                     <pre id="loginQuery">Izvršeni SQL će se prikazati ovdje</pre>
                 </section>
             </div>
+            <section class="card">
+                <h2>2. Broken authentication / krivotvorenje sesije</h2>
+                <p>Nakon prijave server izdaje cookie <code>session</code> Prijavite se gora kao <code>dunja804</code>/<code>lozinka123</code>, a zatim bez lozinke pokušajte dobiti admin pristup.</p>
+                <label>Trenutni cookie (document.cookie)</label>
+                <pre id="cookieView">-</pre>
+
+                <label for="cookieInput">Vrijednost koju želite postaviti kao session cookie</label>
+                <input type="text" id="cookieInput" autocomplete="off">
+                <small>U ranjivom načinu rada vrijednost je Base64 zapis JSON-a <code>{"id":id,"username":"neko ime", "role":"uloga user ili admin"}</code>- izračunajte ga sami (npr. u konzoli preglednika).</small>
+                <button id="btnSetCookie">Postavi cookie</button>
+
+                <div class="payloads">
+                    <button class="secondary" id="btnWho">Tko sam ja prema serveru?</button>
+                      <button class="secondary" id="btnDecode">Dekodiraj kolačić</button>
+                        <button class="secondary" id="btnAdmin">Pristup admin ploči</button>
+                          <button class="secondary" id="btnLogout">Odjava</button>
+                </div>
+                <div id="authMsg"></div>
+                <pre id="authDeatil"></pre>
+            </section>
         </main>
     </body>
     <script src="scripts/app.js" ></script>

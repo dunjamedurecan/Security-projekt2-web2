@@ -21,11 +21,38 @@ $("#ranaToggle").addEventListener("change",async (e)=>{
     const r=await postJson("/api/mode",{sqlVulnerable:e.target.checked});
     applyMode(r.sqlVulnerable);
 });
+function applyAuthMode(vuln){
+    $("#authToggle").checked=vuln;
+}
+$("#authToggle").addEventListener("change",async(e)=>{
+    const r=await postJson("/api/mode",{authVulnerable:e.target.checked});
+    applyAuthMode(r.authVulnerable);
+    updateCookieView();
+})
+
+function updateCookieView(){
+    $("cookieView").textContent=document.cookie||"(nema cookie-ja)";
+}
+
+
+$("#btnWho").addEventListener("click",async()=>{
+    const r= await api("/api/who");
+    updateCookieView();
+    if(r.authenticated){
+        setMsg($("#authMsg"),`Server vas smatra korisnikom "${r.user.username}" (uloga: ${r.user.role})`,r.user.role==="admin");
+    }else{
+        setMsg($("#authMsg"),"Nema valjane sesije",false);
+    }
+    $("#authDetail").textContent=JSON.stringify(r,null,2);
+});
+
+
 
 $("#loginBtn").addEventListener("click",async()=>{
     const r= await postJson("/api/login",{username:$("#u").value,password: $("#p").value});
     setMsg($("#loginMsg"),r.message,r.success);
     $("#loginQuery").textContent=r.query||"";
+    updateCookieView();
 })
 
 function renderTable(container, rows){
