@@ -31,7 +31,7 @@ $("#authToggle").addEventListener("change",async(e)=>{
 })
 
 function updateCookieView(){
-    $("cookieView").textContent=document.cookie||"(nema cookie-ja)";
+    $("#cookieView").textContent=document.cookie||"(nema cookie-ja)";
 }
 
 
