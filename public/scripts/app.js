@@ -46,6 +46,42 @@ $("#btnWho").addEventListener("click",async()=>{
     $("#authDetail").textContent=JSON.stringify(r,null,2);
 });
 
+$("#btnDecode").addEventListener("click",()=>{
+    updateCookieView();
+    const m=document.cookie.match(/(?:^|;\s*)session=([^;]+)/);
+    if(!m){$("#authDetail").textContent="Nema session cookie-ja";return;}
+    try{
+        const decoded=atob(decodeURIComponent(m[1]));
+        $("#authDetail").textContent="Klijentski dekodiran Base64 sadržaj kolačića:\n"+decoded;
+        setMsg($("#authMsg"),"Kolačić je čitljiv i sadrži podatke o korisniku bez zaštite",false);
+    }catch{
+        $("#authDetail").textContent="Kolačić nije Base64/JSON - nema smislenog sadržaja za klijenta (zaštićeni način rada).";
+        setMsg($("#authMsg"),"Token je nasumičan i besmislen bez mapiranja na serveru",true);
+    }
+});
+
+$("#btnSetCookie").addEventListener("click",()=>{
+    const value=$("#cookieInput").value.trim();
+    if(!value){setMsg($("#authMsg"),"Upišite vrijednost kolačića.",false);return;}
+    document.cookie=`session=${value};path=/`;
+    updateCookieView();
+    setMsg($("#authMsg"),"Kolačić je postavljen. Kliknite 'Pristupi admin konzoli' ili 'Tko sam ja prema serveru'",false);
+    $("#authDetail").textContent="Poslani kolačić sesion="+value;
+});
+
+$("#btnAdmin").addEventListener("click",async ()=>{
+    const r= await api("/api/admin");
+    setMsg($("#authMsg"),r.message,r.ok);
+    $("#authDetail").textContent=JSON.stringify(r,null,2);
+});
+
+$("#btnLogout").addEventListener("click",async ()=>{
+    await postJson("/api/logout",{});
+    document.cookie="session=;path/;max-age=0";
+    updateCookieView();
+    setMsg($("#authMsg"),"Odjavljeni ste",true);
+})
+
 
 
 $("#loginBtn").addEventListener("click",async()=>{
