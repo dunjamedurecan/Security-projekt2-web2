@@ -116,22 +116,26 @@ app.post("/api/login",async (req,res)=>{
 
     try{
         let result:QueryResult;
+        let queryShown:string;
 
         if(sqlVulnerable){
             const sql=`SELECT id, username, role FROM users WHERE username='${username}' AND password='${password}'`;
+            queryShown=sql;
             result=await pool.query(sql);
         }else{
             const sql="SELECT id, username, role FROM users WHERE username = $1 AND password =$2";
+            queryShown=`${sql} -- parametri: [${JSON.stringify(username)},${JSON.stringify(password)}]`;
             result=await pool.query(sql,[username,password]);        
         }
         if(result.rows.length>0){
             const u=result.rows[0];
             issueSession(req,res,{id:u.id,username:u.username,role:u.role});
             res.json({success:true,
-                message:`Prijavljeni ste kao "${u.username}"`
+                message:`Prijavljeni ste kao "${u.username}"`,
+                query:queryShown,
             })
         }else{
-            res.json({success:false, message:"Neispravno korisničko ime ili lozinka"});
+            res.json({success:false, message:"Neispravno korisničko ime ili lozinka",query:queryShown});
         }
     }catch(e){
         res.json({
@@ -175,9 +179,10 @@ app.get("/api/search",async(req:Request,res:Response)=>{
             result=lastResult(await pool.query(sql));
         }else{
             const sql="SELECT id, name, sex, league, city, trophies FROM clubs WHERE name ILIKE $1";
+            queryShown=`${sql}--parametar:[${JSON.stringify("%"+q+"%")}]`;
             result=await pool.query(sql,[`%${q}%`]);
         }
-        res.json({rows:result.rows});
+        res.json({query:queryShown,rows:result.rows});
     }catch(e){
         res.json({
             error:sqlVulnerable? `SQL greška ${errMsg(e)}`:"Dogodila se greška",

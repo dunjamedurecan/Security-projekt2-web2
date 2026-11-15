@@ -49,4 +49,28 @@ h2{
     font-size: .85rem;
     color:#fff;
 }
-
+.badge.vuln{background: var(--bad);}
+.badge.safe{background: var(--good);}
+label{
+    display: block;
+    margin: .4rem 0 .15rem;
+    font-size: .9rem;
+}
+input[type=text],input[type=password]{
+    width: 100%;
+    padding: .45rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
+    color:var(--fg);
+    font-family: ui-monospace,monospace;
+}
+button{
+    padding: .45rem .9rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--accent);
+    color:#fff;
+    cursor:pointer;
+    margin-top: .6rem;
+}

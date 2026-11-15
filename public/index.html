@@ -40,6 +40,7 @@
                     <label for="q">Ime ekipe</label>
                     <input type="text" id="q" autocomplete="off">
                     <button id="searchBtn">Traži</button>
+                    <small>Isprobajte pretragu ekipa sa npr <code>HC Podravka</code> ili <code>HC</code>. Potom isprobajte upitima poput <code>zzzzz' UNION SELECT id, username, role, password, 'x', 0 FROM users --</code> doći do tablice s lozinkama korisnika <code>users</code>.</small>
                     <div id="searchMsg"></div>
                     <pre id="searchQuery">Izvršeni SQL će se prikazati ovdje</pre>
                     <div id="searchTable"></div>
@@ -47,7 +48,7 @@
             </div>
             <section class="card">
                 <h2>2. Broken authentication / krivotvorenje sesije</h2>
-                <p>Nakon prijave server izdaje cookie <code>session</code> Prijavite se gora kao <code>dunja804</code>/<code>lozinka123</code>, a zatim bez lozinke pokušajte dobiti admin pristup.</p>
+                <p>Nakon prijave server izdaje cookie <code>session</code> Prijavite se gora kao <code>dunja804</code>/<code>Lozinka123</code>, a zatim bez lozinke pokušajte dobiti admin pristup.</p>
                 <label>Trenutni cookie (document.cookie)</label>
                 <pre id="cookieView">-</pre>
 
