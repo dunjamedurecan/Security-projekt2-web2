@@ -116,7 +116,7 @@ function renderTable(container, rows){
 
 $("#searchBtn").addEventListener("click",async()=>{
     const r=await api("/api/search?q="+encodeURIComponent($("#q").value));
-    if(r.erorr) setMsg($("#searchMsg"),r.error,false);
+    if(r.erorr) setMsg($("#searchMsg"),r.erorr,false);
     else setMsg($("#searchMsg"),`Pronađeno redaka: ${r.rows.length}`,true);
     $("#searchQuery").textContent=r.query||"";
     renderTable($("#searchTable"),r.rows);
