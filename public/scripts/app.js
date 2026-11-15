@@ -113,3 +113,11 @@ function renderTable(container, rows){
     });
     container.appendChild(table);
 }
+
+$("#searchBtn").addEventListener("click",async()=>{
+    const r=await api("/api/search?q="+encodeURIComponent($("#q").value));
+    if(r.erorr) setMsg($("#searchMsg"),r.error,false);
+    else setMsg($("#searchMsg"),`Pronađeno redaka: ${r.rows.length}`,true);
+    $("#searchQuery").textContent=r.query||"";
+    renderTable($("#searchTable"),r.rows);
+});

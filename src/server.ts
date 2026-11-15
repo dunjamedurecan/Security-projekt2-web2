@@ -160,6 +160,31 @@ app.get("/api/admin",(req:Request,res:Response)=>{
         secret:"TAJNI PODATAK",
     });
 });
+function lastResult(res:QueryResult|QueryResult[]):QueryResult{
+    return Array.isArray(res)?res[res.length-1]:res;
+}
+app.get("/api/search",async(req:Request,res:Response)=>{
+    const q=String(req.query.q ?? "");
+    try{
+        let result:QueryResult;
+        let queryShown:string;
+
+        if(sqlVulnerable){
+            const sql=`SELECT id, name, sex, league, city, trophies FROM clubs WHERE name ILIKE '%s{q}%'`;
+            queryShown=sql;
+            result=lastResult(await pool.query(sql));
+        }else{
+            const sql="SELECT id, name, sex, league, city, trophies FROM clubs WHERE name ILIKE $1";
+            result=await pool.query(sql,[`%${q}%`]);
+        }
+        res.json({rows:result.rows});
+    }catch(e){
+        res.json({
+            error:sqlVulnerable? `SQL greška ${errMsg(e)}`:"Dogodila se greška",
+            rows:[],
+        });
+    }
+});
 const port=Number(process.env.PORT)||3000;
 app.listen(port,()=>{
     console.log(`Aplikacija radi na portu ${port}`);
