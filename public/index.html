@@ -26,7 +26,7 @@
 
             <div class="grid">
                 <section class="card">
-                    <h2> 1. Prijava (tautologija)</h2>
+                    <h2> 1.a Prijava (tautologija)</h2>
                     <label for="u">Korisničko ime</label>
                     <input type="text" id="u" autocomplete="off">
                     <label for="p">Lozinka</label>
@@ -34,6 +34,14 @@
                     <button id="loginBtn">Prijavi se</button>
                     <div id="loginMsg"></div>
                     <pre id="loginQuery">Izvršeni SQL će se prikazati ovdje</pre>
+                </section>
+                <section class="card">
+                    <h2>1.b Pretraga rukometnih ekipa (UNION)</h2>
+                    <label for="q">Ime ekipe</label>
+                    <input type="text" id="q" autocomplete="off">
+                    <button id="searchBtn">Traži</button>
+                    <div id="searchMsg"></div>
+                    <pre id="searchQuery">Izvršeni SQL će se prikazati ovdje</pre>
                 </section>
             </div>
             <section class="card">
