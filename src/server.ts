@@ -170,7 +170,7 @@ app.get("/api/search",async(req:Request,res:Response)=>{
         let queryShown:string;
 
         if(sqlVulnerable){
-            const sql=`SELECT id, name, sex, league, city, trophies FROM clubs WHERE name ILIKE '%s{q}%'`;
+            const sql=`SELECT id, name, sex, league, city, trophies FROM clubs WHERE name ILIKE '%${q}%'`;
             queryShown=sql;
             result=lastResult(await pool.query(sql));
         }else{
